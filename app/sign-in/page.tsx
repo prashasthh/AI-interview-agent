@@ -1,10 +1,25 @@
 "use client"
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import AuthForm from "@/components/authform";
 import PageTransition from '@/components/page-transition';
+import { useRouter } from 'next/navigation';
+import { auth } from '@/firebase/client';
+import { onAuthStateChanged } from 'firebase/auth';
 
 const SignInPage = () => {
+  const router = useRouter();
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        router.push('/');
+      }
+    });
+
+    return () => unsubscribe();
+  }, [router]);
+
   return (
     <PageTransition>
       <div className="min-h-screen bg-gradient-to-b from-dark-100 via-dark-300 to-black relative overflow-hidden">
