@@ -41,7 +41,7 @@ const getTechIcon = (tech: string) => {
 const InterviewCard = ({ interviewId, userId, role, type, techstack, createdAt, cover }: InterviewCardProps) => {
   const normalizedType = /mix/gi.test(type) ? 'Mixed' : type;
   const formattedDate = dayjs(createdAt).format('MMM D, YYYY');
-  const mainTech = techstack[0] || 'react'
+  const mainTech = techstack?.[0] || 'react'
 
   return (
     <div className="card-border w-[360px] max-sm:w-full">

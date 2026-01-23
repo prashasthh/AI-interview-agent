@@ -10,11 +10,11 @@ const Page = () => {
         <div className="flex flex-col gap-6 max-w-lg">
           <h2>Get Interview-Ready with AI-Powered Practice & Feedback</h2>
           <p className="text-lg">
-            Practice on real interview questions & get instant feedback
+            Upload your resume, select your role, and start practicing with AI-powered interviews
           </p>
           
           <Button asChild className="btn-primary max-sm:w-full">
-            <Link href="/interview">Start an Interview</Link>
+            <Link href="/setup">Start an Interview</Link>
           </Button>
         </div>
         

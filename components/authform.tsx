@@ -19,7 +19,7 @@ import { z } from "zod"
 import React from 'react'
 import { toast } from "sonner"
 import { useRouter } from "next/navigation"
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth"
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut as firebaseSignOut } from "firebase/auth"
 import { auth } from "@/firebase/client"
 import { signUp, signIn } from "@/lib/actions/auth.action"
 
@@ -57,6 +57,9 @@ const AuthForm = ({ type}: {type: FormType}) => {
           email,
           password,
         })
+
+        // Sign out the user immediately after creating account
+        await firebaseSignOut(auth);
 
         if(!result.success) {
           toast.error(result.message);

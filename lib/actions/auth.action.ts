@@ -126,3 +126,29 @@ export async function getCurrentUser(): Promise<User | null> {
     return null;
   }
 }
+
+export async function isAuthenticated(): Promise<boolean> {
+  const user = await getCurrentUser();
+  return !!user;
+}
+
+export async function signOut() {
+  try {
+    const cookieStore = await cookies();
+    
+    // Remove the session cookie
+    cookieStore.delete('session');
+    
+    return {
+      success: true,
+      message: 'Signed out successfully'
+    };
+  } catch (e) {
+    console.error('Error signing out:', e);
+    
+    return {
+      success: false,
+      message: 'Failed to sign out'
+    };
+  }
+}

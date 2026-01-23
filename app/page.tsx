@@ -8,8 +8,13 @@ import PageTransition from '@/components/page-transition'
 import { motion } from 'framer-motion'
 import InterviewCard from '@/components/interviewCard'
 import { getRandomInterviewCover } from '@/public/constants'
+import { useRouter } from 'next/navigation'
+import { auth } from '@/firebase/client'
+import { onAuthStateChanged } from 'firebase/auth'
 
 const Page = () => {
+  const router = useRouter();
+  const [isLoading, setIsLoading] = useState(true);
   const [dummyInterviews, setDummyInterviews] = useState([
     { 
       interviewId: '1', 
@@ -50,6 +55,14 @@ const Page = () => {
   ])
 
   useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (!user) {
+        router.push('/sign-in');
+      } else {
+        setIsLoading(false);
+      }
+    });
+
     // Generate random covers only on client side
     setDummyInterviews([
       { 
@@ -89,7 +102,13 @@ const Page = () => {
         cover: getRandomInterviewCover()
       },
     ])
-  }, [])
+
+    return () => unsubscribe();
+  }, [router])
+
+  if (isLoading) {
+    return <div className="min-h-screen bg-black flex items-center justify-center text-white">Loading...</div>;
+  }
 
   return (
     <PageTransition>
@@ -101,11 +120,11 @@ const Page = () => {
                 <div className="flex flex-col gap-6 max-w-lg">
                   <h2 className="text-3xl md:text-4xl font-semibold">Get Interview-Ready with AI-Powered Practice & Feedback</h2>
                   <p className="text-lg text-light-100">
-                    Practice on real interview questions & get instant feedback
+                    Upload your resume, select your role, and start practicing with AI-powered interviews
                   </p>
                   
                   <Button asChild className="btn-primary max-sm:w-full hover:scale-105 hover:-translate-y-1 hover:shadow-2xl hover:brightness-110 transition-all duration-300 ease-out">
-                    <Link href="/interview">Start an Interview</Link>
+                    <Link href="/setup">Start an Interview</Link>
                   </Button>
                 </div>
                 
