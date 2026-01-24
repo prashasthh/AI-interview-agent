@@ -1,0 +1,44 @@
+# Project Overview: IntervAi
+
+## What does this project do?
+IntervAi is an AI-powered interview preparation platform. It helps users practice for technical and behavioral interviews by generating custom interview questions and conducting live, voice-based mock interviews using AI.
+
+## Key Features & Functions
+
+### 1. AI-Generated Interview Questions
+- Users can select their desired role, experience level, and tech stack.
+- The app generates a set of tailored interview questions using Google Gemini AI.
+- Questions are stored in Firestore for later review.
+
+### 2. Voice-Based Mock Interviews
+- Users can start a live interview session with an AI interviewer (powered by VAPI).
+- The AI asks questions and listens to the user's spoken answers.
+- Real-time transcript of the conversation is displayed.
+
+### 3. User Authentication
+- Users sign up and log in using Firebase Authentication.
+- Each user's data (questions, interviews) is kept private and secure.
+
+### 4. Interview History
+- Users can view all their past generated interviews and questions.
+- Each interview is linked to the user in Firestore.
+
+### 5. Resume Upload (Planned/Optional)
+- Users can upload their resume for more personalized question generation (feature may be in progress).
+
+## Technologies Used
+- Next.js (React framework)
+- Firebase (Auth, Firestore)
+- Google Gemini AI (for question generation)
+- VAPI (for voice-based interviews)
+- TypeScript
+
+## Typical User Flow
+1. User signs up/logs in.
+2. User selects interview preferences (role, level, tech stack).
+3. App generates and displays custom interview questions.
+4. User can start a live AI voice interview session.
+5. User can review all past interviews and questions.
+
+---
+This file describes the core purpose, features, and flow of your IntervAi project.

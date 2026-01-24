@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from 'react'
+import PageTransition from '@/components/page-transition';
 import ResumeUploader from '@/components/resume-uploader'
 import RoleSelector from '@/components/role-selector'
 import { Button } from '@/components/ui/button'
@@ -77,8 +78,9 @@ export default function InterviewSetupPage() {
   }
 
   return (
-    <div className="min-h-screen bg-black py-12 px-4">
-      <div className="max-w-4xl mx-auto">
+    <PageTransition>
+      <div className="min-h-screen bg-black py-12 px-4">
+        <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
           <div className="mb-4">
@@ -154,7 +156,8 @@ export default function InterviewSetupPage() {
             Please complete both steps to continue
           </p>
         )}
+        </div>
       </div>
-    </div>
+    </PageTransition>
   )
 }
